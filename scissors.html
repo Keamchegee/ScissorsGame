@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>scissors game</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+	#container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        flex-direction: column;
+	}
+	button{
+		font-size: 18px;
+		padding: 7px 15px;
+		background: transparent;
+		border-radius: 12px;
+		margin-right: 20px;
+		background-color: purple;
+		color: white;
+		outline: none;
+		transition: 0.2s;
+		margin-top: 10px;
+	}
+	button:active{
+		color: orange;
+		background-color: white;
+	}
+	button:hover{
+		color: white;
+		background-color: red;
+	}
+	#buttons{
+		margin-top: 15px;
+	}
+	.game{
+		width: 40%;
+		margin: 0 auto;
+		text-align: center;
+		background-color: lawngreen;
+		padding: 50px 10px;
+		border-radius: 14px;
+	}
+	.top{
+		font-size: 22px;
+		color: white;
+
+	}
+	.top span{
+		color: red;
+		font-size: 18px;
+	}
+	.top #score{
+		color: black;
+		font-size: 24px;
+	}
+	#state{
+		color: purple;
+		text-align: center;
+		font-size: 22px;
+		font-weight: 800;
+		margin-bottom: 12px;
+	}
+</style>
+</head>
+<body>
+	<div id="container">
+		<div class="game">
+			<div class="top">
+				<p id="state"></p>
+	<h2>Your score: <span id="score">24</span></h2>
+<h3>Computers choice:<span id="comp"></span></h3>
+<h3>Your choice:<span id="player"></span></h3>
+</div>
+<div id="buttons">
+	<button id ="Paper">paper</button>
+	<button id="Rock">rock</button>
+	<button id="Scissors">scissors</button>
+</div> 
+</div>
+</div>
+<script type="text/javascript">
+	const btn=document.querySelectorAll("button");
+	const player=document.querySelector("#player");
+	const comp=document.querySelector("#comp");
+	 const score=document.querySelector("#score");
+	 const endState=document.querySelector("#state");
+	console.log(score);
+	let scoreValue=score.innerHTML;
+	btn.forEach(button=>{
+		button.addEventListener("click",(e)=>{
+          let name=e.target.id;
+          console.log(name);
+          player.innerHTML=name;
+          let options=["Paper","Rock","Scissors"];
+          let compChoice=options[Math.floor(Math.random()*3)];
+          comp.innerHTML=compChoice;
+          console.log(compChoice);
+          switch(true){
+          	case name==compChoice:
+          	endState.innerHTML="You have drawn with the computer";
+          	break;
+          	case compChoice=="Rock"&&name=="Paper":
+          	case compChoice=="Scissors"&&name=="Rock":
+          	case compChoice=="Paper" &&name=="Scissors":
+          	scoreValue++;
+          	score.innerHTML=scoreValue;
+          	endState.innerHTML="Bravooo!!! Bravooo!!!! You have won the game!!!!!";
+          	break;
+          	default:
+          	scoreValue--;
+            score.innerHTML=scoreValue;
+          	endState.innerHTML="Sorry!!! But you can make another move(choice)!!!";
+          }
+         
+
+
+		})
+	})
+	
+</script>
+</body> 
+</html>
